@@ -90,3 +90,4 @@ vez que o usuário realizar uma buscar.
 
 * Organização e estrutura dos códigos implementados.
 
+# portal_solar_dev_test
