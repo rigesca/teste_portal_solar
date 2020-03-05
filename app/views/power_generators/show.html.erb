@@ -1,0 +1,58 @@
+<div>
+  <div class="header">
+    <div class="logo"><%= image_tag 'ps_logo.png' %></div>
+    <div class="header__title">Geradores de Energia</div>
+  </div>
+
+  <div class="searcher gradient">
+    <!-- Gradiente -->
+  </div>
+
+  <div>
+    <%= image_tag @power_generator.image_url, class: 'power_generator-card__img' %>
+    <div class="power_generator-card__body">
+      <h2><%= @power_generator.name.upcase %></h2>
+      <p class="power_generator-card__price"><%= number_to_currency(@power_generator.price, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p>
+      <p><strong>Descrição: </strong><%= @power_generator.description %></p>
+      <br>
+      <table>
+        <tr>
+          <th colspan="2"><strong>Dados Técnicos</strong></th>
+        </tr>
+        <tr>
+          <td><p>Fabricante:</p></td>
+          <td><p><%= @power_generator.manufacturer%></p></td>
+        </tr>
+        <tr>
+          <td><p>Tipo de placa:</p></td>
+          <td><p><%= @power_generator.structure_type%></p></td>
+        </tr>
+        <tr>
+          <td><p>Potência:</p></td>
+          <td><p><%= @power_generator.kwp%> (kWp)</p></td>
+        </tr>
+        <tr>
+          <th colspan="2"><strong>Dimensões</strong></th>
+        </tr>
+        <tr>
+          <td><p>Altura:</p></td>
+          <td><p><%= @power_generator.height%>m</p></td>
+        </tr>
+        <tr>
+          <td><p>Largura:</p></td>
+          <td><p><%= @power_generator.width%>m</p></td>
+        </tr>
+        <tr>
+          <td><p>Comprimento:</p></td>
+          <td><p><%= @power_generator.lenght%>m</p></td>
+        </tr>
+        <tr>
+          <td><p>Peso:</p></td>
+          <td><p><%= @power_generator.weight%> kg</p></td>
+        </tr>
+        
+      </table>
+    </div>
+  </div>
+
+</div>

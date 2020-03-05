@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :home, only: %i[index]
 
-  resources :power_generators, only: %i[index] do
+  resources :power_generators, only: %i[index show] do
     get 'search', on: :collection
   end
 end
