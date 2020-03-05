@@ -14,4 +14,7 @@ class PowerGenerator < ApplicationRecord
     trapezoidal
   ]
 
+  def self.word_search(word)
+    where('name like :word or description like :word', word: word)
+  end
 end

@@ -5,6 +5,9 @@ default: &default
 development:
   <<: *default
   database: PortalSolarDevTest_development
+test:
+  <<: *default
+  database: PortalSolarDevTest_development
 production:
   <<: *default
   database: PortalSolarDevTest_production

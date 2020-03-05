@@ -18,12 +18,16 @@
 
     <%= form_tag do %>
       <div class="simple-form">
-        <div class="simple-form__input">
-          <input class="form-control form-control-lg" type="text" placeholder="o que procura?">
-        </div>
-        <div class="simple-form__btn">
-          <button type="submit" class="btn btn-outline-primary btn-lg">Pesquisar</button>
-        </div>
+        <%= form_with url: search_power_generators_path, local: true, method: 'get' do %>
+          <div class="simple-form__input">
+            <!-- <input class="form-control form-control-lg" type="text" placeholder="o que procura?"> -->
+            <%= text_field_tag :q, nil, class: 'form-control form-control-lg', placeholder: 'o que procura?'%>
+          </div>
+          <div class="simple-form__btn">
+            <!-- <button type="submit" class="btn btn-outline-primary btn-lg">Pesquisar</button> -->
+            <%= submit_tag 'Pesquisar', class: 'btn btn-outline-primary btn-lg'%>
+          </div>
+        <% end %>
       </div>
 
       <div class="advanced-form" style="display:none;">
@@ -33,15 +37,19 @@
   </div>
 
   <div class="container" >
-    <% @power_generators.each do |power_generator| %>
-      <div class="box card power_generator-card">
-        <%= image_tag power_generator.image_url, class: 'power_generator-card__img' %>
-        <div class="power_generator-card__body">
-          <h2><%= power_generator.name.upcase %></h2>
-          <p class="power_generator-card__price"><%= number_to_currency(power_generator.price, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p>
-          <p><strong>Descrição: </strong><%= power_generator.description %></p>
+    <% if @power_generators.blank? %>
+      <p><strong>Nenhum produto encontrado!</strong></p>
+    <% else %>
+      <% @power_generators.each do |power_generator| %>
+        <div class="box card power_generator-card">
+          <%= image_tag power_generator.image_url, class: 'power_generator-card__img' %>
+          <div class="power_generator-card__body">
+            <h2><%= power_generator.name.upcase %></h2>
+            <p class="power_generator-card__price"><%= number_to_currency(power_generator.price, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p>
+            <p><strong>Descrição: </strong><%= power_generator.description %></p>
+          </div>
         </div>
-      </div>
+      <% end%>
     <% end %>
   </div>
 </div>
