@@ -1,0 +1,9 @@
+<p>
+  CEP: <%= address[:zipcode]%> | Cidade: <%= address[:city]%> |
+  Endereço: <%= address[:address]%> | Estado: <%= address[:state]%>
+</p>
+<p>
+  <% freights.each do |freight|%>
+    Valor do Frete: <%= number_to_currency(freight.cost, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %>
+  <% end %>
+</p> 

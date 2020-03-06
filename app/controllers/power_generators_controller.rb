@@ -21,16 +21,20 @@ class PowerGeneratorsController < ApplicationController
   end
 
   def freight_calculate
-    @adrress = FindCep.find(params[:cep]) unless params[:cep].blank?
+    unless params[:cep].blank?
+      @address = FindCep.find(params[:cep]) unless params[:cep].blank?
+      @freights = Freight.where(state: @address[:state])
+                        .weight_range(@power_generator.weight)
+    end
 
     render :show
   end
 
-  private 
+  private
 
   def set_varibles
     @power_generator = PowerGenerator.find(params[:id])
-    @adrress = nil
-    @freight_value = 0
+    @address = nil
+    @freights = nil
   end
 end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :power_generators, only: %i[index show] do
     get 'simple_search', on: :collection
     get 'advanced_search', on: :collection
-    post 'freight_calculate', on: :member
+    get 'freight_calculate', on: :member
   end
 
   
