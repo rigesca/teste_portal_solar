@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :home, only: %i[index]
 
   resources :power_generators, only: %i[index show] do
-    get 'search', on: :collection
+    get 'simple_search', on: :collection
+    get 'advanced_search', on: :collection
+    post 'freight_calculate', on: :member
   end
+
+  
+
 end

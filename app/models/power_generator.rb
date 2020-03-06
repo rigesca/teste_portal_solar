@@ -15,6 +15,7 @@ class PowerGenerator < ApplicationRecord
   ]
 
   def self.word_search(word)
-    where('name like :word or description like :word', word: word)
+    where('name like :word or description like :word', word: word.downcase)
   end
+
 end

@@ -9,7 +9,8 @@ feature 'Visitor search for a power generator' do
                                description: 'Placa solar pequena para telhados')
 
       visit root_path
-      fill_in 'o que procura?', with: 'grande'
+      page.find(:css, "#simpleSearch").set(true)
+      fill_in 'o que procura?', with: 'Grande'
       click_on 'Pesquisar'
 
       expect(page).to have_content('Placa solar grande')
@@ -30,6 +31,21 @@ feature 'Visitor search for a power generator' do
       click_on 'Pesquisar'
 
       expect(page).to have_content('Nenhum produto encontrado!')
+    end
+  end
+
+  xcontext 'in a advanced query' do
+    scenario 'successfully' do
+      create(:power_generator, manufacturer: 'NeoSolar')
+      create(:power_generator, manufacturer: 'Ourolux Solar')
+
+      visit root_path
+      page.find(:css, "#advancedSearch").set(true)
+      fill_in 'Fabricante', with: 'NeoSolar'
+      click_on 'Pesquisar'
+
+      expect(page).to have_content('NeoSolar')
+      expect(page).to_not have_content('Ourolux Solar')
     end
   end
 end

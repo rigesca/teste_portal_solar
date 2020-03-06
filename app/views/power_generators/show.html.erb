@@ -5,7 +5,16 @@
   </div>
 
   <div class="searcher gradient">
-    <!-- Gradiente -->
+      <%= form_with url: freight_calculate_power_generator_path, local: true, method: :post do %>
+            <p>
+              <%= text_field_tag :cep, nil, class: 'form-control form-control-lg', placeholder: 'CEP'%>
+              <%= submit_tag 'Calcula Frete', class: 'btn btn-outline-primary btn-lg'%>
+              <p> 
+                Estado: <%= @adrress[:state] if @adrress.present?%> |
+                Valor do Frete para esse produto: <%= number_to_currency(@freight_value, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %>
+              </p>
+            <p>
+          <% end %>
   </div>
 
   <div>

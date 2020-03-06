@@ -8,7 +8,7 @@
     <div class="searcher__radio">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="searchRadio" id="simpleSearch" value="simple" checked>
-        <label class="form-check-label" for="simpleSearch">Pesquisa simples</label>
+        <label class="form-check-label" for="simpleSearch">Pesquisa Simples</label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="searchRadio" id="advancedSearch" value="advanced">
@@ -17,8 +17,9 @@
     </div>
 
     <%= form_tag do %>
+      
       <div class="simple-form">
-        <%= form_with url: search_power_generators_path, local: true, method: 'get' do %>
+        <%= form_with url: simple_search_power_generators_path, local: true, method: 'get' do %>
           <div class="simple-form__input">
             <!-- <input class="form-control form-control-lg" type="text" placeholder="o que procura?"> -->
             <%= text_field_tag :q, nil, class: 'form-control form-control-lg', placeholder: 'o que procura?'%>
@@ -31,8 +32,17 @@
       </div>
 
       <div class="advanced-form" style="display:none;">
-        Entradas do usuário para pesquisar uma coleção de geradores de energia com base nas recomendações fornecidas e melhor custo de frete.
+        <%= form_with url: advanced_search_power_generators_path, local: true, method: 'get' do %>
+          <div class="simple-form__input">
+            <p><strong>Dados Tecnicos</strong></p>
+            <%= text_field_tag :manufacturer, nil, class: 'form-control form-control-lg', placeholder: 'Fabricante'%>
+          </div>
+          <div class="simple-form__btn">
+            <%= submit_tag 'Pesquisar', class: 'btn btn-outline-primary btn-lg'%>
+          </div>
+        <% end %>
       </div>
+    
     <% end %>
   </div>
 

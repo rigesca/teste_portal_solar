@@ -1,17 +1,36 @@
 class PowerGeneratorsController < ApplicationController
+  before_action :set_varibles, only: %i[show freight_calculate]
+
   def index
     @power_generators = PowerGenerator.all
   end
 
   def show
-    @power_generator = PowerGenerator.find(params[:id])
   end
 
-  def search
+  def simple_search
     return if params[:q].blank?
 
     @power_generators = PowerGenerator.word_search("%#{params[:q]}%")
 
     render :index
+  end
+
+  def advanced_search
+    #WIP
+  end
+
+  def freight_calculate
+    @adrress = FindCep.find(params[:cep]) unless params[:cep].blank?
+
+    render :show
+  end
+
+  private 
+
+  def set_varibles
+    @power_generator = PowerGenerator.find(params[:id])
+    @adrress = nil
+    @freight_value = 0
   end
 end
