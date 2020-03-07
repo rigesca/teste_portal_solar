@@ -46,4 +46,18 @@ RSpec.describe PowerGenerator, type: :model do
       expect(result.last).to eq(generate_last)
     end
   end
+
+  context '#calculate_cubage' do
+    it 'successfully' do
+      generator = create(:power_generator, height: 1.2, width: 0.2, lenght: 1.8)
+
+      expect(generator.cubage.to_f).to eq(129.6)
+    end
+
+    it 'and have height, width and lenght with zero' do
+      generator = create(:power_generator, height: 0, width: 0, lenght: 0)
+
+      expect(generator.cubage.to_f).to eq(0)
+    end
+  end
 end
