@@ -1,7 +1,9 @@
 require 'correios-cep'
 
-class FindCep
+class Cep
   def self.find(cep)
+    return {} if cep.blank?
+
     cep = cep.remove('-')
 
     finder = Correios::CEP::AddressFinder.new

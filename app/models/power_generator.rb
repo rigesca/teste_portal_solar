@@ -15,7 +15,9 @@ class PowerGenerator < ApplicationRecord
   ]
 
   def self.word_search(word)
-    where('name like :word or description like :word', word: word.downcase)
+    word = "%#{word.upcase}%"
+    where('UPPER(name) LIKE :word OR UPPER(description) LIKE :word', word: word)
+      .order(:name, :price)
   end
 
 end

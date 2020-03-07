@@ -11,7 +11,7 @@ class PowerGeneratorsController < ApplicationController
   def simple_search
     return if params[:q].blank?
 
-    @power_generators = PowerGenerator.word_search("%#{params[:q]}%")
+    @power_generators = PowerGenerator.word_search(params[:q])
 
     render :index
   end
@@ -22,9 +22,9 @@ class PowerGeneratorsController < ApplicationController
 
   def freight_calculate
     unless params[:cep].blank?
-      @address = FindCep.find(params[:cep]) unless params[:cep].blank?
+      @address = Cep.find(params[:cep]) unless params[:cep].blank?
       @freights = Freight.where(state: @address[:state])
-                        .weight_range(@power_generator.weight)
+                         .weight_range(@power_generator.weight)
     end
 
     render :show
