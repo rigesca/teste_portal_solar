@@ -2,7 +2,7 @@ class PowerGeneratorsController < ApplicationController
   before_action :set_varibles, only: %i[show freight_calculate]
 
   def index
-    @power_generators = PowerGenerator.all
+    @power_generators = PowerGenerator.order(:name).page(params[:page])
   end
 
   def show

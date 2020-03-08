@@ -19,6 +19,9 @@ gem "roo", "~> 2.8.0"
 # Para busca dos dados de um CEP para calculo do frete
 gem 'correios-cep'
 
+# Para paginação
+gem 'kaminari'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'

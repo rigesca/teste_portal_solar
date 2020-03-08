@@ -18,9 +18,12 @@ class PowerGenerator < ApplicationRecord
     trapezoidal
   ]
 
+  paginates_per 6
+
   def self.word_search(word)
     word = "%#{word.upcase}%"
     where('UPPER(name) LIKE :word OR UPPER(description) LIKE :word', word: word)
+      .order(:name)
   end
 
   def lowest_weight
