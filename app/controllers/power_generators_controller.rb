@@ -24,7 +24,7 @@ class PowerGeneratorsController < ApplicationController
     unless params[:cep].blank?
       @address = Cep.find(params[:cep]) unless params[:cep].blank?
       @freights = Freight.where(state: @address[:state])
-                         .weight_range(@power_generator.weight)
+                         .weight_range(@power_generator.lowest_weight)
     end
 
     render :show

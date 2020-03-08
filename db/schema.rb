@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_221322) do
     t.float "kwp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "cubage", precision: 8, scale: 2, default: "0.0"
+    t.float "cubage", default: 0.0
   end
 
 end

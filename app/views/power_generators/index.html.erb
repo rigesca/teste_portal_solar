@@ -50,6 +50,7 @@
     <% if @power_generators.blank? %>
       <p><strong>Nenhum produto encontrado!</strong></p>
     <% else %>
+
       <% @power_generators.each do |power_generator| %>
         <div class="box card power_generator-card">
           <%= image_tag power_generator.image_url, class: 'power_generator-card__img' %>
@@ -60,6 +61,32 @@
           </div>
         </div>
       <% end%>
+
+
+
+
+
+
+
+
+    <div class="searcher gradient">
+        <p>TESTE<p>
+      </div>
+
+      <% @power_generators.each do |power_generator| %>
+        <div class="box card power_generator-card">
+          <%= image_tag power_generator.image_url, class: 'power_generator-card__img' %>
+          <div class="power_generator-card__body">
+            <h2><%= link_to power_generator.name.upcase, power_generator_path(power_generator) %></h2>
+            <p class="power_generator-card__price"><%= number_to_currency(power_generator.price, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %></p>
+            <p><strong>Descrição: </strong><%= power_generator.description %></p>
+          </div>
+        </div>
+      <% end%>
+
+      
+
+      
     <% end %>
   </div>
 </div>

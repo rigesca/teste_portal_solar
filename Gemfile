@@ -15,6 +15,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rails-assets-jquery'
 gem 'uglifier', '>= 1.3.0'
 gem "roo", "~> 2.8.0"
+
+# Para busca dos dados de um CEP para calculo do frete
 gem 'correios-cep'
 
 group :development, :test do
