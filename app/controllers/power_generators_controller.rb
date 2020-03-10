@@ -5,19 +5,22 @@ class PowerGeneratorsController < ApplicationController
     @power_generators = PowerGenerator.order(:name).page(params[:page])
   end
 
-  def show
-  end
+  def show; end
 
   def simple_search
     return if params[:q].blank?
 
-    @power_generators = PowerGenerator.word_search(params[:q])
-
+    @power_generators = PowerGeneratorSearch.simple_search(params[:q],
+                                                           params[:order])
+                                            .page(params[:page])
     render :index
   end
 
   def advanced_search
-    #WIP
+    @power_generators = PowerGeneratorSearch.advanced_search(params)
+                                            .page(params[:page])
+
+    render :index
   end
 
   def freight_calculate

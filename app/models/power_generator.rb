@@ -20,10 +20,32 @@ class PowerGenerator < ApplicationRecord
 
   paginates_per 6
 
-  def self.word_search(word)
+  def self.name_description_search(word)
     word = "%#{word.upcase}%"
     where('UPPER(name) LIKE :word OR UPPER(description) LIKE :word', word: word)
-      .order(:name)
+  end
+
+  def self.ranged_sql_where(campo, minimum, maximum)
+    return where("#{campo} >= #{maximum}") if minimum.blank?
+
+    return where("#{campo} <= #{minimum}") if maximum.blank?
+
+    where("#{campo} BETWEEN #{minimum} AND #{maximum}")
+  end
+
+  def self.order_search(order)
+    case order.to_i
+    when 1
+      order(:price)
+    when 2
+      order(price: :desc)
+    when 3
+      order(:kwp)
+    when 4
+      order(kwp: :desc)
+    else
+      order(:name)
+    end
   end
 
   def lowest_weight

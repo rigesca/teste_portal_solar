@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PowerGenerator, type: :model do
-  context '#word_search' do
+  context '#name_description_search' do
     it 'and find a power generator by name' do
       generator = create(:power_generator, name: 'PLACA SOLAR DE TESTES')
 
-      result = PowerGenerator.word_search('placa solar de testes')
+      result = PowerGenerator.name_description_search('placa solar de testes')
 
       expect(result).to include(generator)
     end
@@ -14,7 +14,7 @@ RSpec.describe PowerGenerator, type: :model do
       generator = create(:power_generator, description: 'Placa solar utilizada'\
         ' para testes')
 
-      result = PowerGenerator.word_search('utilizada para teste')
+      result = PowerGenerator.name_description_search('utilizada para teste')
 
       expect(result).to include(generator)
     end

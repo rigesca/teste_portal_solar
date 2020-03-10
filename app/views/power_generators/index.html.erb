@@ -16,10 +16,8 @@
       </div>
     </div>
 
-    <%= form_tag do %>
-      
+    <%= form_tag("/power_generators/simple_search", method: :get) do %>
       <div class="simple-form">
-        <%= form_with url: simple_search_power_generators_path, local: true, method: 'get' do %>
           <div class="simple-form__input">
             <!-- <input class="form-control form-control-lg" type="text" placeholder="o que procura?"> -->
             <%= text_field_tag :q, nil, class: 'form-control form-control-lg', placeholder: 'o que procura?'%>
@@ -28,29 +26,52 @@
             <!-- <button type="submit" class="btn btn-outline-primary btn-lg">Pesquisar</button> -->
             <%= submit_tag 'Pesquisar', class: 'btn btn-outline-primary btn-lg'%>
           </div>
-        <% end %>
-      </div>
-
-      <div class="advanced-form" style="display:none;">
-        <%= form_with url: advanced_search_power_generators_path, local: true, method: 'get' do %>
           <div class="simple-form__input">
-            <p><strong>Dados Tecnicos</strong></p>
-            <%= text_field_tag :manufacturer, nil, class: 'form-control form-control-lg', placeholder: 'Fabricante'%>
+            <p>Ordenar por: <%= select_tag(:order, options_for_select([['Por Nome', :name],['Menor Preço', 1],['Maior Preço', 2],['Menor kWp', 3],['Maior kWp', 4]])) %></p>
           </div>
-          <div class="simple-form__btn">
-            <%= submit_tag 'Pesquisar', class: 'btn btn-outline-primary btn-lg'%>
-          </div>
-        <% end %>
       </div>
-    
     <% end %>
 
-     <%= form_with url: advanced_search_power_generators_path, local: true, method: 'get' do %>
-          <div class="simple-form__input">
-            <p>Ordenar por: <%= select_tag(:order, options_for_select([['------------', 0],['Menor Preço', 1],['Maior Preço', 2],['Maior kWp', 3],['Menor kWp', 4]])) %></p>
-          </div>
-        <% end %>
-
+    <%= form_tag("/power_generators/advanced_search", method: :get) do %>
+      <div class="advanced-form" style="display:none;">
+              <p><strong>Dados Técnicos</strong></p>
+              <p><%= text_field_tag :manufacturer, nil, class: 'form-control form-control-lg', placeholder: 'Fabricante'%></p>
+              <p>
+                <div class="row">
+                    <%= check_box_tag('structure_type[]','metalico') %> <%= I18n.t(:metalico)%>
+                    <%= check_box_tag('structure_type[]','ceramico') %><%= I18n.t(:ceramico)%>
+                    <%= check_box_tag('structure_type[]','fibrocimento') %> <%= I18n.t(:fibrocimento)%>
+                    </div>
+                <div class="row">  
+                    <%= check_box_tag('structure_type[]','laje') %> <%= I18n.t(:laje)%>
+                    <%= check_box_tag('structure_type[]','solo') %> <%= I18n.t(:solo)%>
+                    <%= check_box_tag('structure_type[]','trapezoidal') %> <%= I18n.t(:trapezoidal) %>
+                </div>
+              </p>
+              <p>
+                <%= text_field_tag :kwp_min, nil, class: 'form-control form-control-lg', placeholder: 'Potencia(kwp) Minima'%>
+                <%= text_field_tag :kwp_max, nil, class: 'form-control form-control-lg', placeholder: 'Potencia(kwp) Maxima'%>
+              </p>
+              <p><strong>Dimensões</strong></p>
+              <p>
+                <%= text_field_tag :height_min, nil, class: 'form-control form-control-lg', placeholder: 'Altura(m) Minima'%>
+                <%= text_field_tag :height_max, nil, class: 'form-control form-control-lg', placeholder: 'Altura(m) Maxima'%>
+              </p>
+              <p>
+                <%= text_field_tag :width_min, nil, class: 'form-control form-control-lg', placeholder: 'Largura(m) Minima'%>
+                <%= text_field_tag :width_max, nil, class: 'form-control form-control-lg', placeholder: 'Largura(m) Maxima'%>
+              </p>
+              <p>
+                <%= text_field_tag :lenght_min, nil, class: 'form-control form-control-lg', placeholder: 'Comprimento(m) Minima'%>
+                <%= text_field_tag :lenght_max, nil, class: 'form-control form-control-lg', placeholder: 'Comprimento(m) Maxima'%>
+              </p>
+              <p>
+                <%= text_field_tag :weight_min, nil, class: 'form-control form-control-lg', placeholder: 'Peso(kg) Minima'%>
+                <%= text_field_tag :weight_max, nil, class: 'form-control form-control-lg', placeholder: 'Peso(kg) Maxima'%>
+              </p>              
+              <p><%= submit_tag 'Pesquisar', class: 'btn btn-outline-primary btn-lg'%></p>
+      </div>
+    <% end %>
   </div>
 
   <div class="container" >
@@ -69,7 +90,7 @@
         </div>
       <% end%>
 
-<%= paginate @power_generators %>
+    <%= paginate @power_generators %>
 
     <% end %>
   </div>

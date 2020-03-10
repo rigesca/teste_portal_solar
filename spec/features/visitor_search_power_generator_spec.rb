@@ -9,7 +9,7 @@ feature 'Visitor search for a power generator' do
                                description: 'Placa solar pequena para telhados')
 
       visit root_path
-      page.find(:css, "#simpleSearch").set(true)
+      page.find(:css, '#simpleSearch').set(true)
       fill_in 'o que procura?', with: 'Grande'
       click_on 'Pesquisar'
 
@@ -34,14 +34,17 @@ feature 'Visitor search for a power generator' do
     end
   end
 
-  xcontext 'in a advanced query' do
+  context 'in a advanced query' do
     scenario 'successfully' do
       create(:power_generator, manufacturer: 'NeoSolar')
       create(:power_generator, manufacturer: 'Ourolux Solar')
 
       visit root_path
-      page.find(:css, "#advancedSearch").set(true)
-      fill_in 'Fabricante', with: 'NeoSolar'
+      #byebug
+      page.find(:css, '#simpleSearch').set(true)
+
+      page.find("input[placeholder='Fabricante']").set 'NeoSolar'
+
       click_on 'Pesquisar'
 
       expect(page).to have_content('NeoSolar')

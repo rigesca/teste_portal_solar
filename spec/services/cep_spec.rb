@@ -31,5 +31,17 @@ RSpec.describe Cep do
 
       expect(address).to be_empty
     end
+
+    it 'bigger zipcode' do
+      address = Cep.find('78117422888')
+
+      expect(address).to be_empty
+    end
+
+    it 'smaller zipcode' do 
+      address = Cep.find('22458')
+
+      expect(address).to be_empty
+    end
   end
 end
