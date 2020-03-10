@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor consult a power generator' do
   scenario 'successfully' do
-    generator = create(:power_generator, name: 'Placa solar')
+    generator = create(:power_generator, name: 'A - Placa solar')
 
     visit root_path
     click_on generator.name.upcase

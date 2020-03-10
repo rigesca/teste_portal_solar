@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor calculate freight' do
   scenario 'successfully' do
-    generator = create(:power_generator, name: 'Placa solar grande', 
+    generator = create(:power_generator, name: 'A - Placa solar grande',
                                          weight: 30)
     create(:freight, state: 'SP',
                      weight_min: 20,
