@@ -15,6 +15,12 @@ class PowerGeneratorSearch
       generators = generators.where(structure_type: params[:structure_type])
     end
 
+    if params[:price_min].present? || params[:price_max].present?
+      generators = generators.ranged_sql_where('price',
+                                               params[:price_min],
+                                               params[:price_max])
+    end
+
     if params[:kwp_min].present? || params[:kwp_max].present?
       generators = generators.ranged_sql_where('kwp',
                                                params[:kwp_min],

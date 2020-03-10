@@ -49,6 +49,10 @@
                 </div>
               </p>
               <p>
+                <%= text_field_tag :price_min, nil, class: 'form-control form-control-lg', placeholder: 'Valor(R$) Minimo'%>
+                <%= text_field_tag :price_max, nil, class: 'form-control form-control-lg', placeholder: 'Valor(R$) Maximo'%>
+              </p>
+              <p>
                 <%= text_field_tag :kwp_min, nil, class: 'form-control form-control-lg', placeholder: 'Potencia(kwp) Minima'%>
                 <%= text_field_tag :kwp_max, nil, class: 'form-control form-control-lg', placeholder: 'Potencia(kwp) Maxima'%>
               </p>
@@ -62,12 +66,12 @@
                 <%= text_field_tag :width_max, nil, class: 'form-control form-control-lg', placeholder: 'Largura(m) Maxima'%>
               </p>
               <p>
-                <%= text_field_tag :lenght_min, nil, class: 'form-control form-control-lg', placeholder: 'Comprimento(m) Minima'%>
-                <%= text_field_tag :lenght_max, nil, class: 'form-control form-control-lg', placeholder: 'Comprimento(m) Maxima'%>
+                <%= text_field_tag :lenght_min, nil, class: 'form-control form-control-lg', placeholder: 'Comprimento(m) Minimo'%>
+                <%= text_field_tag :lenght_max, nil, class: 'form-control form-control-lg', placeholder: 'Comprimento(m) Maximo'%>
               </p>
               <p>
-                <%= text_field_tag :weight_min, nil, class: 'form-control form-control-lg', placeholder: 'Peso(kg) Minima'%>
-                <%= text_field_tag :weight_max, nil, class: 'form-control form-control-lg', placeholder: 'Peso(kg) Maxima'%>
+                <%= text_field_tag :weight_min, nil, class: 'form-control form-control-lg', placeholder: 'Peso(kg) Minimo'%>
+                <%= text_field_tag :weight_max, nil, class: 'form-control form-control-lg', placeholder: 'Peso(kg) Maximo'%>
               </p>              
               <p><%= submit_tag 'Pesquisar', class: 'btn btn-outline-primary btn-lg'%></p>
       </div>

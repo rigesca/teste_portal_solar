@@ -109,6 +109,20 @@ RSpec.describe PowerGeneratorSearch do
       expect(generator.count).to eq(1)
     end
 
+    it 'search for price range' do
+      create(:power_generator, name: 'Placa de teste',
+                               price: 15599.99)
+
+      generator = PowerGeneratorSearch.advanced_search(
+        price_min: 15500.00,
+        price_max: 15600.00
+      )
+
+      expect(generator.first.name).to eq('Placa de teste')
+      expect(generator.first.price).to eq(15599.99)
+      expect(generator.count).to eq(1)
+    end
+
     it 'search for kwp range' do
       create(:power_generator, name: 'Placa de teste',
                                kwp: 55.9)
@@ -151,17 +165,17 @@ RSpec.describe PowerGeneratorSearch do
       expect(generator.count).to eq(1)
     end
 
-    it 'search for leght range' do
+    it 'search for lenght range' do
       create(:power_generator, name: 'Placa de teste',
-                               leght: 32)
+                               lenght: 32)
 
       generator = PowerGeneratorSearch.advanced_search(
-        width_min: 22,
-        width_max: 37
+        lenght_min: 22,
+        lenght_max: 37
       )
 
       expect(generator.first.name).to eq('Placa de teste')
-      expect(generator.first.leght).to eq(32)
+      expect(generator.first.lenght).to eq(32)
       expect(generator.count).to eq(1)
     end
 
