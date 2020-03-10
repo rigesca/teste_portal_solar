@@ -5,5 +5,6 @@
 <p>
   <% freights.each do |freight|%>
     Valor do Frete: <%= number_to_currency(freight.cost, unit: "R$ ", precision: 2, :separator => ",", :delimiter => ".") %>
+    <%= link_to 'Consulta Tabela de Frete', freights_path(address: address), class: 'btn btn-outline-primary btn-lg'%>
   <% end %>
 </p> 

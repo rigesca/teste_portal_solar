@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     get 'advanced_search', on: :collection
     get 'freight_calculate', on: :member
   end
+
+  resources :freights, only: %i[index]
 end
