@@ -22,6 +22,4 @@ RUN bundle install
 
 COPY . $INSTALL_PATH
 
-RUN yarn install --check-files
-
 ENTRYPOINT ["sh", "bin/entry/db_script.sh"]
