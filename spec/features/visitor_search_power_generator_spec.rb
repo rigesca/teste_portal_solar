@@ -20,6 +20,15 @@ feature 'Visitor search for a power generator' do
       expect(page).to_not have_content('Placa solar pequena para telhados')
     end
 
+    scenario 'and not fill a search filter' do
+      visit root_path
+      page.find(:css, '#simpleSearch').set(true)
+      fill_in 'o que procura?', with: ''
+      click_on 'Pesquisar'
+
+      expect(current_path).to eq(simple_search_power_generators_path)
+    end
+
     scenario 'and not find any power generators' do
       create(:power_generator, name: 'Placa solar grande',
                                description: 'Placa solar grande para telhados')

@@ -8,11 +8,12 @@ class PowerGeneratorsController < ApplicationController
   def show; end
 
   def simple_search
-    return if params[:q].blank?
+    if params[:q].present?
+      @power_generators = PowerGeneratorSearch.simple_search(params[:q],
+                                                             params[:order])
+                                              .page(params[:page])
+    end
 
-    @power_generators = PowerGeneratorSearch.simple_search(params[:q],
-                                                           params[:order])
-                                            .page(params[:page])
     render :index
   end
 
